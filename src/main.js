@@ -2,10 +2,19 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import App from './App';
+import VueRouter from 'vue-router';
+import goods from './components/goods/goods.vue';
+Vue.use(VueRouter);
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App }
+let app = Vue.extend(App);
+
+let router = new VueRouter();
+
+router.map({
+  '/goods': {
+    components: goods
+  }
 });
+router.start(app, '#app');
+/* eslint-disable no-new */
+
